@@ -1,0 +1,11 @@
+{
+    "name": "umesh/isolta-task",
+    "description": "Php client for prh open data",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Umesh Raj Satyal"
+        }
+    ],
+    "require": {}
+}

@@ -7,6 +7,7 @@ class PRHClient {
   static $API_ENDPOINT = "https://avoindata.prh.fi/bis/v1/";
   static $PATTERN = '/^\d{7}-\d{1}$/';
   public $businessID;
+  static $serverError = 'Internal server error';
 
   public function isValidBusinessId($businessID) {
      return preg_match(self::$PATTERN, $businessID);
@@ -28,7 +29,12 @@ class PRHClient {
         'Accept: application/json'
     ]);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = json_decode(curl_exec($ch), true);
+    $curlResponse = json_decode(curl_exec($ch), true);
+    if (json_last_error() === JSON_ERROR_NONE) {
+      $response = $curlResponse;
+    } else {
+      $response = self::$serverError;
+    }
     curl_close($ch);
 
     return $response;

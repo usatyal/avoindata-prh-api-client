@@ -35,6 +35,7 @@ $postCode = '';
 $city = '';
 $businessLines = '';
 $businessLinesCode = '';
+$webAddress = '';
 
 foreach ($results as $key => $value) {
   $name = $value['name'];
